@@ -165,12 +165,3 @@ SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-sniffing
 SECURE_BROWSER_XSS_FILTER = True  # Enable browser XSS filter
 X_FRAME_OPTIONS = "DENY"  # Prevent clickjacking
 
-# Content Security Policy (CSP)
-# Note: django-csp package would be needed for full CSP support
-# This is a basic configuration using meta tags in templates
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
-CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
-CSP_FONT_SRC = ("'self'", "https://cdn.jsdelivr.net")
-CSP_IMG_SRC = ("'self'", "data:", "https:")
-

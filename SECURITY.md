@@ -20,14 +20,17 @@
 
 ### 구현 사항
 - ✅ Django 템플릿 엔진의 자동 이스케이프 기능 활성화 (기본값)
-- ✅ Content Security Policy (CSP) 메타 태그 추가
-  - `default-src 'self'`
-  - `script-src 'self' https://cdn.jsdelivr.net`
-  - `style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'`
-  - `img-src 'self' data: https:`
+- ✅ `X-Content-Type-Options: nosniff` 헤더 추가
+- ✅ `X-Frame-Options: DENY` 헤더 추가
+
+### 향후 개선 사항
+Content Security Policy (CSP)를 더 강화하려면 `django-csp` 패키지 사용을 고려하세요:
+```bash
+pip install django-csp
+```
 
 ### 검증
-- 템플릿 확인: `templates/base.html` - CSP 메타 태그
+- 템플릿 확인: `templates/base.html` - 보안 메타 태그
 - 테스트: `apps/memos/tests.py` - `test_xss_protection_in_memo_content`
 
 ## 3. SQL Injection 방어
