@@ -95,6 +95,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 8,
+        }
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
@@ -139,3 +142,35 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Custom User Model
 AUTH_USER_MODEL = "users.User"
+
+# Security settings
+# CSRF Protection
+CSRF_COOKIE_SECURE = not DEBUG  # Secure cookies in production
+CSRF_COOKIE_HTTPONLY = True  # Prevent JavaScript access to CSRF cookie
+CSRF_USE_SESSIONS = False  # Use cookie-based CSRF tokens
+CSRF_COOKIE_SAMESITE = "Strict"  # Prevent CSRF attacks via cross-site requests
+
+# Session Security
+SESSION_COOKIE_SECURE = not DEBUG  # Secure session cookies in production
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access to session cookie
+SESSION_COOKIE_SAMESITE = "Strict"  # Prevent session hijacking via cross-site requests
+SESSION_COOKIE_AGE = 86400  # 24 hours
+
+# HTTPS and Security Headers
+SECURE_SSL_REDIRECT = not DEBUG  # Redirect HTTP to HTTPS in production
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0  # 1 year HSTS in production
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-sniffing
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser XSS filter
+X_FRAME_OPTIONS = "DENY"  # Prevent clickjacking
+
+# Content Security Policy (CSP)
+# Note: django-csp package would be needed for full CSP support
+# This is a basic configuration using meta tags in templates
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
+CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
+CSP_FONT_SRC = ("'self'", "https://cdn.jsdelivr.net")
+CSP_IMG_SRC = ("'self'", "data:", "https:")
+
