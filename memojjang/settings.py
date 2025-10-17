@@ -136,3 +136,6 @@ LOGOUT_REDIRECT_URL = "home"
 # Crispy Forms settings
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Custom User Model
+AUTH_USER_MODEL = "users.User"
